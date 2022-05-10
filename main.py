@@ -6,7 +6,9 @@ import aiogram.types
 from icrawler.builtin import GoogleImageCrawler
 
 from aiogram import Bot, Dispatcher, executor, types
-from constants import TOKEN
+from constants import TOKEN, api_key
+import asyncio
+from aioyoutube import Api
 
 API_TOKEN = TOKEN
 
@@ -35,6 +37,21 @@ async def handle_command_adminwindow(message: types.Message):
                                          one_time_keyboard=True)
     keyboard.add(button1).add(button2).add(button1).add('d')
     await message.answer("hi", reply_markup=keyboard)
+
+
+@dp.message_handler(commands=['youtube'])
+async def get_playlists(message: types.Message):
+    api = Api()
+    lists = await api.playlistItems(key=api_key, part=['snippet', 'id'],
+                                    playlist_id='PL4_hYwCyhAvYePPocxGQv8RsOnYepxCPY'
+                                    )
+    lists = lists['items']
+    for video in lists:
+        print(video['snippet']['title'])
+        await message.answer(video['snippet']['title'])
+        await message.answer('www.youtube.com/watch?v=' + video['snippet']['resourceId']['videoId'])
+    await message.answer("Лукашов!!!")
+    return 5
 
 
 @dp.message_handler()
