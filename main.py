@@ -83,7 +83,6 @@ async def greatprint(callback_query: types.CallbackQuery):
     lists = await get_playlist(code)
 
     for video in lists:
-        print(video['snippet']['title'])
         await bot.send_message(callback_query.from_user.id,
                                video['snippet']['title'])
         await bot.send_message(callback_query.from_user.id,
