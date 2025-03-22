@@ -1,5 +1,11 @@
-TOKEN = 'paste your token here'
-api_key = 'paste your youtube api key here'
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+api_key = os.getenv('YOUTUBE_API_KEY')
 
 lists = [['Матан', 'PL4_hYwCyhAvYePPocxGQv8RsOnYepxCPY'],
          ['Алгем', 'PL4_hYwCyhAvYmJi6xJFMsb1lpcZ5zZo93'],

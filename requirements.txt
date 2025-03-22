@@ -1,0 +1,4 @@
+icrawler==0.6.10
+aiogram==3.19.0
+python-dotenv==1.0.1
+aioyoutube==0.1.6
